@@ -15,6 +15,15 @@ public class Manager {
         String[][] seatingArrangement = returnSeatingArrangement(rows, seatsPerRow);
         displaySeatingArrangement(seatingArrangement);
 
+        // fill seat
+        System.out.print("Enter a row number: ");
+        int userRow = scanner.nextInt();
+        System.out.print("Enter a seat number in that row: ");
+        int userSeatInRow = scanner.nextInt();
+
+        // find ticket price
+        System.out.printf("Ticket price: $%d", ticketPrice(userRow, seatingArrangement));
+
 //        System.out.printf("Total income:%n$%d", calculateProfit(rows, seatsPerRow));
 
     }
@@ -44,6 +53,7 @@ public class Manager {
                 System.out.print(seatingArrangement[i][j] + " ");
             }
         }
+        System.out.println();
     }
 
     public static String[][] returnSeatingArrangement(int rows, int seatsPerRow) {
@@ -55,6 +65,25 @@ public class Manager {
             }
         }
         return seatingArrangement;
+    }
+
+    public static int ticketPrice(int userRow, String[][] seatingArrangement) {
+        int totalSeats = seatingArrangement.length * seatingArrangement[0].length;
+        System.out.printf("Rows: %d   Columns: %d%n", seatingArrangement.length, seatingArrangement[0].length);
+        System.out.printf("Total amount of seats: %d%n", totalSeats);
+        // low capacity
+        if (totalSeats <= 60) {
+            return 10;
+        }
+        else {
+            // front-half seating
+            if (userRow <= seatingArrangement.length / 2) {
+                return 10;
+            }
+            else {
+                return 8;
+            }
+        }
     }
 
     public static int calculateProfit(int rows, int seatsPerRow) {
