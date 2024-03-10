@@ -1,48 +1,45 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Manager {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // get rows and seats-per-row
+        // Get theater layout parameters
         System.out.print("Enter the number of rows: ");
         int rows = scanner.nextInt();
         System.out.print("Enter the number of seats in each row: ");
         int seatsPerRow = scanner.nextInt();
         System.out.println();
 
-        // create 2d array
+        // Create theater layout in 2D array
         String[][] seatingArrangement = returnSeatingArrangement(rows, seatsPerRow);
         displaySeatingArrangement(seatingArrangement);
 
-        // fill seat
+        // Get theater seat preference
         System.out.print("\nEnter a row number: ");
         int userRow = scanner.nextInt();
         System.out.print("Enter a seat number in that row: ");
         int userSeatInRow = scanner.nextInt();
         System.out.println();
 
-        // find ticket price
+        // Calculate ticket price
         System.out.printf("Ticket price: $%d%n", ticketPrice(userRow, seatingArrangement));
 
-        // update seating
+        // Fill theater seat
         seatingArrangement[userRow - 1][userSeatInRow - 1] = "B";
         displaySeatingArrangement(seatingArrangement);
 
-//        System.out.printf("Total income:%n$%d", calculateProfit(rows, seatsPerRow));
+        scanner.close();
     }
 
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
         System.out.print("Cinema: \n  ");
-        // row numbers
-        for (int i = 1; i <= seatingArrangement[0].length; i++) System.out.print(i + " ");
-        // display rows
+
+        for (int i = 1; i <= seatingArrangement[0].length; i++) System.out.print(i + " ");  // row numbers
+
         for (int i = 0; i < seatingArrangement.length; i++) {
-            // column numbers
-            System.out.printf("%n%d ", i + 1);
+            System.out.printf("%n%d ", i + 1);                                              // column numbers
             for (int j = 0; j < seatingArrangement[i].length; j++) {
-                // display columns
                 System.out.print(seatingArrangement[i][j] + " ");
             }
         }
@@ -62,16 +59,15 @@ public class Manager {
 
     public static int ticketPrice(int userRow, String[][] seatingArrangement) {
         int totalSeats = seatingArrangement.length * seatingArrangement[0].length;
-        // low capacity
-        if (totalSeats <= 60) {
+
+        if (totalSeats <= 60) {                             // low capacity
             return 10;
         }
-        else {
-            // front-half seating
-            if (userRow <= seatingArrangement.length / 2) {
+        else {                                              // high capacity
+            if (userRow <= seatingArrangement.length / 2) { // front-half seating
                 return 10;
             }
-            else {
+            else {                                          // back-half seating
                 return 8;
             }
         }
