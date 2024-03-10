@@ -31,19 +31,6 @@ public class Manager {
         displaySeatingArrangement(seatingArrangement);
 
 //        System.out.printf("Total income:%n$%d", calculateProfit(rows, seatsPerRow));
-
-    }
-    // TODO: Delete if not used by final project step. We are now using 2d arrays.
-    public static void displaySeatingArrangementOld() {
-        System.out.print("Cinema: \n  ");
-        // display columns
-        for (int i = 1; i <= 8; i++) System.out.print(i + " ");
-        // display rows
-        for (int i = 1; i <= 7; i++) {
-            System.out.print("\n" + i + " ");
-            for (int j = 1; j <= 8; j++) System.out.print("S ");
-        }
-        System.out.println();
     }
 
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
