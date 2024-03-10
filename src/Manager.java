@@ -1,7 +1,19 @@
+import java.util.Scanner;
+
 public class Manager {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         // call method to print seating arrangement
         displaySeatingArrangement();
+
+        // calculate profit
+        System.out.print("Enter the number of rows: ");
+        int rows = scanner.nextInt();
+        System.out.print("Enter the number of seats in each row: ");
+        int seatsPerRow = scanner.nextInt();
+        System.out.printf("Total income:%n$%d", calculateProfit(rows, seatsPerRow));
+
     }
 
     public static void displaySeatingArrangement() {
