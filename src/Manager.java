@@ -13,5 +13,29 @@ public class Manager {
             System.out.print("\n" + i + " ");
             for (int j = 1; j <= 8; j++) System.out.print("S ");
         }
+        System.out.println();
+    }
+
+    public static int calculateProfit(int rows, int seatsPerRow) {
+        int totalSeats = rows * seatsPerRow;
+        int ticketPrice;
+        int total = 0;
+
+        // low capacity
+        if (totalSeats <= 60) {
+            ticketPrice = 10;
+            total = totalSeats * ticketPrice;
+        }
+
+        // high capacity
+        else {
+            // front half seating
+            ticketPrice = 10;
+            total = (seatsPerRow * (rows / 2)) * ticketPrice;
+            // back half seating
+            ticketPrice = 8;
+            total += (seatsPerRow * (rows - (rows / 2))) * ticketPrice;
+        }
+        return total;
     }
 }
