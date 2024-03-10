@@ -13,13 +13,13 @@ public class Manager {
 
         // create 2d array
         String[][] seatingArrangement = returnSeatingArrangement(rows, seatsPerRow);
-        System.out.println(Arrays.deepToString(seatingArrangement));
+        displaySeatingArrangement(seatingArrangement);
 
 //        System.out.printf("Total income:%n$%d", calculateProfit(rows, seatsPerRow));
 
     }
-
-    public static void displaySeatingArrangement() {
+    // TODO: Delete if not used by final project step. We are now using 2d arrays.
+    public static void displaySeatingArrangementOld() {
         System.out.print("Cinema: \n  ");
         // display columns
         for (int i = 1; i <= 8; i++) System.out.print(i + " ");
@@ -29,6 +29,21 @@ public class Manager {
             for (int j = 1; j <= 8; j++) System.out.print("S ");
         }
         System.out.println();
+    }
+
+    public static void displaySeatingArrangement(String[][] seatingArrangement) {
+        System.out.print("Cinema: \n  ");
+        // row numbers
+        for (int i = 1; i <= seatingArrangement[0].length; i++) System.out.print(i + " ");
+        // display rows
+        for (int i = 0; i < seatingArrangement.length; i++) {
+            // column numbers
+            System.out.printf("%n%d ", i + 1);
+            for (int j = 0; j < seatingArrangement[i].length; j++) {
+                // display columns
+                System.out.print(seatingArrangement[i][j] + " ");
+            }
+        }
     }
 
     public static String[][] returnSeatingArrangement(int rows, int seatsPerRow) {
