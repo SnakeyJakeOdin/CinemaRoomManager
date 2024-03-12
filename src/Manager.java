@@ -25,7 +25,6 @@ public class Manager {
                     break;
                 case 2:
                     updateSeatingArrangement(seating);
-                    displayPrice(row, seating);
                     break;
                 default:
                     isFinished = true;
@@ -75,6 +74,7 @@ public class Manager {
         int row = getSeat("Enter a row number: ");
         int col = getSeat("Enter a seat number in that row: ");
         seatingArrangement[row - 1][col - 1] = "B";
+        displayPrice(row, seatingArrangement);
     }
 
     public static void displayPrice(int userRow, String[][] seatingArrangement) {
