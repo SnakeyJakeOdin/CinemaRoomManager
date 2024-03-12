@@ -10,7 +10,7 @@ public class Manager {
 
         // Create theater layout in 2D array
         String[][] seating = new String[row][col];
-        updateSeatingArrangement(seating);
+        createSeatingArrangement(seating);
         displaySeatingArrangement(seating);
 
         // Menu
@@ -21,30 +21,16 @@ public class Manager {
             n = scanner.nextInt();
             switch (n) {
                 case 1:
-                    // call method
-                    System.out.println("1st case");
+                    displaySeatingArrangement(seating);
                     break;
                 case 2:
-                    // call method
-                    System.out.println("2nd case");
+                    updateSeatingArrangement(seating);
+                    System.out.printf("Ticket price: $%d%n", ticketPrice(row, seating));
                     break;
                 default:
-                    System.out.println("Default case");
                     isFinished = true;
             }
         }
-
-
-        // Get theater seat preference
-        row = getSeat("Enter a row number: ");
-        col = getSeat("Enter a seat number in that row: ");
-
-        // Calculate ticket price
-        System.out.printf("Ticket price: $%d%n", ticketPrice(row, seating));
-
-        // Fill theater seat
-        seating[row - 1][col - 1] = "B";
-        displaySeatingArrangement(seating);
 
         scanner.close();
     }
@@ -75,13 +61,19 @@ public class Manager {
         System.out.println("\n");
     }
 
-    public static void updateSeatingArrangement(String[][] seatingArrangement) {
+    public static void createSeatingArrangement(String[][] seatingArrangement) {
         String emptySeatSymbol = "S";
         for (int i = 0; i < seatingArrangement.length; i++) {
             for (int j = 0; j < seatingArrangement[0].length; j++) {
                 seatingArrangement[i][j] = emptySeatSymbol;
             }
         }
+    }
+
+    public static void updateSeatingArrangement(String[][] seatingArrangement) {
+        int row = getSeat("Enter a row number: ");
+        int col = getSeat("Enter a seat number in that row: ");
+        seatingArrangement[row - 1][col - 1] = "B";
     }
 
     public static int ticketPrice(int userRow, String[][] seatingArrangement) {
