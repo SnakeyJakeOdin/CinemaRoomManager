@@ -12,8 +12,9 @@ public class Manager {
         System.out.println();
 
         // Create theater layout in 2D array
-        String[][] seatingArrangement = returnSeatingArrangement(rows, seatsPerRow);
-        displaySeatingArrangement(seatingArrangement);
+        String[][] seating = new String[rows][seatsPerRow];
+        updateSeatingArrangement(seating);
+        displaySeatingArrangement(seating);
 
         // Get theater seat preference
         System.out.print("\nEnter a row number: ");
@@ -23,11 +24,11 @@ public class Manager {
         System.out.println();
 
         // Calculate ticket price
-        System.out.printf("Ticket price: $%d%n", ticketPrice(userRow, seatingArrangement));
+        System.out.printf("Ticket price: $%d%n", ticketPrice(userRow, seating));
 
         // Fill theater seat
-        seatingArrangement[userRow - 1][userSeatInRow - 1] = "B";
-        displaySeatingArrangement(seatingArrangement);
+        seating[userRow - 1][userSeatInRow - 1] = "B";
+        displaySeatingArrangement(seating);
 
         scanner.close();
     }
@@ -46,15 +47,13 @@ public class Manager {
         System.out.println();
     }
 
-    public static String[][] returnSeatingArrangement(int rows, int seatsPerRow) {
-        String[][] seatingArrangement = new String[rows][seatsPerRow];
+    public static void updateSeatingArrangement(String[][] seatingArrangement) {
         String emptySeatSymbol = "S";
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < seatsPerRow; j++) {
+        for (int i = 0; i < seatingArrangement.length; i++) {
+            for (int j = 0; j < seatingArrangement[0].length; j++) {
                 seatingArrangement[i][j] = emptySeatSymbol;
             }
         }
-        return seatingArrangement;
     }
 
     public static int ticketPrice(int userRow, String[][] seatingArrangement) {
