@@ -25,7 +25,7 @@ public class Manager {
                     break;
                 case 2:
                     updateSeatingArrangement(seating);
-                    System.out.printf("Ticket price: $%d%n", ticketPrice(row, seating));
+                    displayPrice(row, seating);
                     break;
                 default:
                     isFinished = true;
@@ -71,25 +71,28 @@ public class Manager {
     }
 
     public static void updateSeatingArrangement(String[][] seatingArrangement) {
+        System.out.println();
         int row = getSeat("Enter a row number: ");
         int col = getSeat("Enter a seat number in that row: ");
         seatingArrangement[row - 1][col - 1] = "B";
     }
 
-    public static int ticketPrice(int userRow, String[][] seatingArrangement) {
+    public static void displayPrice(int userRow, String[][] seatingArrangement) {
         int totalSeats = seatingArrangement.length * seatingArrangement[0].length;
+        int price;
 
         if (totalSeats <= 60) {                             // low capacity
-            return 10;
+            price = 10;
         }
         else {                                              // high capacity
             if (userRow <= seatingArrangement.length / 2) { // front-half seating
-                return 10;
+                price = 10;
             }
             else {                                          // back-half seating
-                return 8;
+                price = 8;
             }
         }
+        System.out.printf("Ticket price: $%d%n%n", price);
     }
 
     public static int calculateProfit(int rows, int seatsPerRow) {
