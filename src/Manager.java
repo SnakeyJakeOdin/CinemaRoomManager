@@ -4,11 +4,13 @@ public class Manager {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        int row;
+        int col;
+        boolean isFinished = false;
 
         // Get theater layout parameters
-        int row = getSeat("Enter the number of rows: ");
-        int col = getSeat("Enter the number of seats in each row: ");
-        System.out.println();
+        row = getSeat("Enter the number of rows: ");
+        col = getSeat("Enter the number of seats in each row: ");
 
         // Create theater layout in 2D array
         String[][] seating = new String[row][col];
@@ -20,7 +22,6 @@ public class Manager {
         // Get theater seat preference
         row = getSeat("Enter a row number: ");
         col = getSeat("Enter a seat number in that row: ");
-        System.out.println();
 
         // Calculate ticket price
         System.out.printf("Ticket price: $%d%n", ticketPrice(row, seating));
@@ -45,7 +46,7 @@ public class Manager {
     }
 
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
-        System.out.print("Cinema: \n  ");
+        System.out.print("\nCinema: \n  ");
 
         for (int i = 1; i <= seatingArrangement[0].length; i++) System.out.print(i + " ");  // row numbers
 
