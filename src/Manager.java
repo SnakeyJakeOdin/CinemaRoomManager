@@ -15,6 +15,8 @@ public class Manager {
         updateSeatingArrangement(seating);
         displaySeatingArrangement(seating);
 
+        displayMenu();
+
         // Get theater seat preference
         row = getSeat("Enter a row number: ");
         col = getSeat("Enter a seat number in that row: ");
@@ -35,6 +37,13 @@ public class Manager {
         return scanner.nextInt();
     }
 
+    public static void displayMenu() {
+        String option1 = "Show the seats";
+        String option2 = "Buy a ticket";
+        String option0 = "Exit";
+        System.out.printf("1. %s%n2. %s%n0. %s%n", option1, option2, option0);
+    }
+
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
         System.out.print("Cinema: \n  ");
 
@@ -46,7 +55,7 @@ public class Manager {
                 System.out.print(seatingArrangement[i][j] + " ");
             }
         }
-        System.out.println();
+        System.out.println("\n");
     }
 
     public static void updateSeatingArrangement(String[][] seatingArrangement) {
