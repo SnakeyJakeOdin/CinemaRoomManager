@@ -4,20 +4,36 @@ public class Manager {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int row;
-        int col;
-        boolean isFinished = false;
-
         // Get theater layout parameters
-        row = getSeat("Enter the number of rows: ");
-        col = getSeat("Enter the number of seats in each row: ");
+        int row = getSeat("Enter the number of rows: ");
+        int col = getSeat("Enter the number of seats in each row: ");
 
         // Create theater layout in 2D array
         String[][] seating = new String[row][col];
         updateSeatingArrangement(seating);
         displaySeatingArrangement(seating);
 
-        displayMenu();
+        // Menu
+        boolean isFinished = false;
+        int n;
+        while (!isFinished) {
+            displayMenu();
+            n = scanner.nextInt();
+            switch (n) {
+                case 1:
+                    // call method
+                    System.out.println("1st case");
+                    break;
+                case 2:
+                    // call method
+                    System.out.println("2nd case");
+                    break;
+                default:
+                    System.out.println("Default case");
+                    isFinished = true;
+            }
+        }
+
 
         // Get theater seat preference
         row = getSeat("Enter a row number: ");
