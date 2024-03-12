@@ -6,41 +6,35 @@ public class Manager {
     public static void main(String[] args) {
 
         // Get theater layout parameters
-        int rows = getRows();
-        int seatsPerRow = getRows();
+        int row = getSeat("Enter the number of rows: ");
+        int col = getSeat("Enter the number of seats in each row: ");
         System.out.println();
 
         // Create theater layout in 2D array
-        String[][] seating = new String[rows][seatsPerRow];
+        String[][] seating = new String[row][col];
         updateSeatingArrangement(seating);
         displaySeatingArrangement(seating);
 
         // Get theater seat preference
-        System.out.print("\nEnter a row number: ");
-        int userRow = scanner.nextInt();
-        System.out.print("Enter a seat number in that row: ");
-        int userSeatInRow = scanner.nextInt();
+        row = getSeat("Enter a row number: ");
+        col = getSeat("Enter a seat number in that row: ");
         System.out.println();
 
         // Calculate ticket price
-        System.out.printf("Ticket price: $%d%n", ticketPrice(userRow, seating));
+        System.out.printf("Ticket price: $%d%n", ticketPrice(row, seating));
 
         // Fill theater seat
-        seating[userRow - 1][userSeatInRow - 1] = "B";
+        seating[row - 1][col - 1] = "B";
         displaySeatingArrangement(seating);
 
         scanner.close();
     }
 
-    public static int getRows() {
-        System.out.print("Enter the number of rows: ");
+    public static int getSeat(String prompt) {
+        System.out.print(prompt);
         return scanner.nextInt();
     }
 
-    public static int getSeatsPerRow() {
-        System.out.print("Enter the number of seats in each row: ");
-        return scanner.nextInt();
-    }
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
         System.out.print("Cinema: \n  ");
 
