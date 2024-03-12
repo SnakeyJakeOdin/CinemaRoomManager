@@ -1,14 +1,13 @@
 import java.util.Scanner;
 
 public class Manager {
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
         // Get theater layout parameters
-        System.out.print("Enter the number of rows: ");
-        int rows = scanner.nextInt();
-        System.out.print("Enter the number of seats in each row: ");
-        int seatsPerRow = scanner.nextInt();
+        int rows = getRows();
+        int seatsPerRow = getRows();
         System.out.println();
 
         // Create theater layout in 2D array
@@ -33,6 +32,15 @@ public class Manager {
         scanner.close();
     }
 
+    public static int getRows() {
+        System.out.print("Enter the number of rows: ");
+        return scanner.nextInt();
+    }
+
+    public static int getSeatsPerRow() {
+        System.out.print("Enter the number of seats in each row: ");
+        return scanner.nextInt();
+    }
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
         System.out.print("Cinema: \n  ");
 
