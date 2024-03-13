@@ -53,8 +53,12 @@ public class Manager {
     }
 
     public static void displayStatistics(String[][] seatingArrangement) {
+        int totalIncome = calculateProfit(seatingArrangement.length, seatingArrangement[0].length);
+        double percentage = (double) purchasedTickets / (seatingArrangement.length * seatingArrangement[0].length);
         System.out.printf("%nNumber of purchased tickets: %d%n", purchasedTickets);
+        System.out.printf("Percentage: %.2f%%\n", percentage * 100);
         System.out.printf("Current income: $%d%n", currentIncome);
+        System.out.printf("Total income: $%d%n", totalIncome);
     }
 
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
