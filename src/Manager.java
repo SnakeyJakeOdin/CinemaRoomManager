@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Manager {
     public static Scanner scanner = new Scanner(System.in);
+    static int purchasedTickets = 0;
+    static int currentIncome = 0;
 
     public static void main(String[] args) {
         // Get theater layout parameters
@@ -26,6 +28,9 @@ public class Manager {
                 case 2:
                     updateSeatingArrangement(seating);
                     break;
+                case 3:
+                    displayStatistics(seating);
+                    break;
                 default:
                     isFinished = true;
             }
@@ -42,8 +47,14 @@ public class Manager {
     public static void displayMenu() {
         String option1 = "Show the seats";
         String option2 = "Buy a ticket";
+        String option3 = "Statistics";
         String option0 = "Exit";
-        System.out.printf("1. %s%n2. %s%n0. %s%n", option1, option2, option0);
+        System.out.printf("1. %s%n2. %s%n3. %s%n0. %s%n", option1, option2, option3, option0);
+    }
+
+    public static void displayStatistics(String[][] seatingArrangement) {
+        System.out.printf("%nNumber of purchased tickets: %d%n", purchasedTickets);
+        System.out.printf("Current income: $%d%n", currentIncome);
     }
 
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
@@ -74,6 +85,7 @@ public class Manager {
         int row = getSeat("Enter a row number: ");
         int col = getSeat("Enter a seat number in that row: ");
         seatingArrangement[row - 1][col - 1] = "B";
+        purchasedTickets++;
         displayPrice(row, seatingArrangement);
     }
 
@@ -93,6 +105,7 @@ public class Manager {
             }
         }
         System.out.printf("Ticket price: $%d%n%n", price);
+        currentIncome += price;
     }
 
     public static int calculateProfit(int rows, int seatsPerRow) {
