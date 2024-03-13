@@ -58,7 +58,7 @@ public class Manager {
         System.out.printf("%nNumber of purchased tickets: %d%n", purchasedTickets);
         System.out.printf("Percentage: %.2f%%\n", percentage * 100);
         System.out.printf("Current income: $%d%n", currentIncome);
-        System.out.printf("Total income: $%d%n", totalIncome);
+        System.out.printf("Total income: $%d%n%n", totalIncome);
     }
 
     public static void displaySeatingArrangement(String[][] seatingArrangement) {
@@ -85,9 +85,28 @@ public class Manager {
     }
 
     public static void updateSeatingArrangement(String[][] seatingArrangement) {
-        System.out.println();
-        int row = getSeat("Enter a row number: ");
-        int col = getSeat("Enter a seat number in that row: ");
+        int row = 0;
+        int col = 0;
+        boolean hasValidInput = false;
+
+        while (!hasValidInput) {
+            System.out.println();
+            row = getSeat("Enter a row number: ");
+            col = getSeat("Enter a seat number in that row: ");
+
+            // outside of ticket range
+            if (row > seatingArrangement.length || row < 0 || col > seatingArrangement[0].length || col < 0) {
+                System.out.println("Wrong input!");
+            }
+            // already purchased ticket
+            else if (seatingArrangement[row - 1][col - 1].equals("B")) {
+                System.out.println("That ticket has already been purchased!");
+            }
+            else {
+                hasValidInput = true;
+            }
+
+        }
         seatingArrangement[row - 1][col - 1] = "B";
         purchasedTickets++;
         displayPrice(row, seatingArrangement);
